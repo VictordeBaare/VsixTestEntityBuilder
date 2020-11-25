@@ -44,7 +44,9 @@ namespace VSIXTestEntity
                 stringBuilder.AppendLine($"using {codeMetaData.Namespace};")
                     .AppendLine($"using System;")
                     .AppendLine($"using System.Linq;")
+                    .AppendLine($"using System.CodeDom.Compiler;")
                     .AppendLine()
+                    .AppendLine("[GeneratedCode(\"VsixTestBuilder\", \"0.1\")]")
                     .AppendLine($"public partial class {codeMetaData.Name}Builder")
                     .AppendLine("{");
 
@@ -133,7 +135,7 @@ namespace VSIXTestEntity
             return new CodeFile
             {
                 GeneratedCode = stringBuilder.ToString(),
-                Path = $"{GetFilePath(project, folder)}{codeMetaData.Name}Builder.cs",
+                Path = $"{GetFilePath(project, folder)}{codeMetaData.Name}Builder_Generated.cs",
                 Succesfull = true,
             };
         }
